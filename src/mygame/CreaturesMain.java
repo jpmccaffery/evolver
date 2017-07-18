@@ -91,6 +91,9 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 
 		// Init physics
 		m_bulletAppState = new BulletAppState ();
+
+		m_bulletAppState.setSpeed (SIM_SPEED);
+
 		stateManager.attach (m_bulletAppState);
 		PhysicsTestHelper.createPhysicsTestWorld (
 			rootNode, assetManager, m_bulletAppState.getPhysicsSpace ());
@@ -578,6 +581,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 	private static final int NUM_GENS = 100;
 	private static final int NUM_EVAL_STEPS = 15000;
 	private static final int NET_ID_TO_EVAL = 1;
+	private static final float SIM_SPEED = 1;
 
 	// Options
 	private boolean m_evolveMode = true;
