@@ -1,0 +1,43 @@
+package critter;
+
+public class Critter
+{
+	public void think (float tpf_)
+	{
+		List<Double> inputActivity = new ArrayList<Double> ();
+
+		for (Sensor s : m_sensors)
+		{
+			for (double i : s.read (tpf_))
+			{
+				inputActivity.add (i);
+			}
+		}
+
+		m_brain.activate (inputActivity);
+	}
+
+	public void act (float tpf_)
+	{
+		List<Double> output = outputActivity ();
+		List<Double> localOutput = new ArrayList<Double> ();
+		int outputIndex = 0;
+
+		for (Actuator actuator : m_actuators)
+		{
+			while (localOutput.size () < actuator.size ())
+			{
+				localOutput.add (output[outputIndex]);
+				outputIndex++;
+			}
+
+			actuator.act (localOutput, tpf_);
+			localOutput.clear ();
+		}
+	}
+
+	private virtual List<Double> outputActivity ();
+
+	private List<Sensor> m_sensors;
+	private List<Actuator> m_actuators;
+}
