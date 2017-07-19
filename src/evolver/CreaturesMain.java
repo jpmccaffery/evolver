@@ -123,9 +123,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 		{
 			//calculate fitness
 			int tempFitness = 0;
-//			Vector3f endLoc = m_shoulders.getLocalTranslation ();
-			Vector3f endLoc =
-				m_critter.body ().getLocalTranslation ();
+			Vector3f endLoc = m_shoulders.getLocalTranslation ();
 			float distanceTraveled = startLoc.distance (endLoc);
 
 			distanceTraveled = Math.round(distanceTraveled * 100);
@@ -138,11 +136,12 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 		}
 		else
 		{
-			m_critter.think (tpf_);
-			m_critter.act (tpf_);
-
-/*
-			m_nn.activate(singleLineNetworkInput);
+			int i = 0;
+			while (i < SIM_SPEED)
+			{
+				m_nn.activate(singleLineNetworkInput);
+				i++;
+			}
 
 			singleLineNetworkInput[0] = desiredYawVelocity1;
 			singleLineNetworkInput[1] = desiredRollVelocity1;
@@ -167,7 +166,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 			yawMotor2.setTargetVelocity(desiredYawVelocity2);
 			rollMotor2.setTargetVelocity(desiredRollVelocity2);
 			pitchMotor2.setTargetVelocity(desiredPitchVelocity2);
-*/
+
 			m_evalCounter++;
 		}
 	}
@@ -233,24 +232,11 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 		}
 
 		// Otherwise load the next network
-//		loadNetwork (m_runningNetworkId);
+		loadNetwork (m_runningNetworkId);
 
 		System.out.println("evaluating network: " +
 				   m_runningNetworkId);
 
-		m_critter.body ().removeFromSpace (
-			m_bulletAppState.getPhysicsSpace ());
-
-		String fileId = NET_DIR + m_runningNetworkId + ".xml";
-		SimpleLoadedBirthingPod pod =
-			new SimpleLoadedBirthingPod (fileId);
-
-		m_critter = pod.birth ();
-
-		m_critter.body ().removeFromSpace (
-			m_bulletAppState.getPhysicsSpace ());
-
-/*
 		m_bulletAppState.getPhysicsSpace().removeAll(
 			m_agent.getChild(0));
 		m_bulletAppState.getPhysicsSpace().removeAll(
@@ -258,16 +244,12 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 		m_bulletAppState.getPhysicsSpace().removeAll(
 			m_agent.getChild(2));
 		m_agent.removeFromParent();
-*/
 
 		System.gc();
 
 		//create the next m_agent
-//		m_agent = new Node();
-//		createRagDoll();
-
-
-
+		m_agent = new Node();
+		createRagDoll();
 	}
 
 	/// \brief Set up the lighting
@@ -339,7 +321,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 
 		for (int i = 0; i < POP_SIZE; i++)
 		{
-/*			try
+			try
 			{
 				String outDir = NET_DIR;
 				String outName = (i + 1) + ".xml";
@@ -360,12 +342,6 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 				System.out.println (exception_.getMessage ());
 				System.exit (0);
 			}
-*/
-			String fileName = NET_DIR + (i + 1) + ".xml";
-			SimpleRandomBirthingPod pod =
-				new SimpleRandomBirthingPod (fileName);
-
-			m_critter = pod.birth ();
 		}
 	}
 
@@ -606,9 +582,9 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 	private static final String NET_DIR = "networks/network";
 	private static final int POP_SIZE = 20;
 	private static final int NUM_GENS = 100;
-	private static final int NUM_EVAL_STEPS = 1500;
+	private static final int NUM_EVAL_STEPS = 1000;
 	private static final int NET_ID_TO_EVAL = 1;
-	private static final float SIM_SPEED = 1;
+	private static final float SIM_SPEED = 10;
 
 	// Options
 	private boolean m_evolveMode = true;
