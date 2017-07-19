@@ -1,5 +1,4 @@
-
-package mygame;
+package evolver;
 
 import network.Network;
 import java.io.BufferedWriter;

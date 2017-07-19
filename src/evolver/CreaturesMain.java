@@ -1,4 +1,4 @@
-package mygame;
+package evolver;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -579,7 +579,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 	private static final String NET_DIR = "networks/network";
 	private static final int POP_SIZE = 20;
 	private static final int NUM_GENS = 100;
-	private static final int NUM_EVAL_STEPS = 15000;
+	private static final int NUM_EVAL_STEPS = 1500;
 	private static final int NET_ID_TO_EVAL = 1;
 	private static final float SIM_SPEED = 1;
 
