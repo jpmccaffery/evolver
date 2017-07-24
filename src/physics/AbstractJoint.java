@@ -1,6 +1,9 @@
 package physics;
 
-public interface AbstractJoint
+import com.jme3.math.Vector3f;
+
+
+public interface AbstractJoint extends PhysicsObject
 {
 	public Vector3f angularSpeed ();
 	public void setAngularSpeed (Vector3f speed_);

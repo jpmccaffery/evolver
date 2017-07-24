@@ -3,6 +3,7 @@ package evolver;
 import physics.AetherLimb;
 import physics.MonkeyLimb;
 import physics.Limb;
+import physics.Joint;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -102,10 +103,20 @@ public class DemoMain extends SimpleApplication implements ActionListener
 		if (m_debugMode)
 			m_bulletAppState.setDebugEnabled (true);
 
-		Limb limb =
-			new Limb (new Vector3f (0f, 0f, 0f), new Vector3f (0f, -1f, 0f), 2f, 0f, 2);
+		Limb limbA =
+			new Limb (new Vector3f (0f, 0f, 0f), new Vector3f (0f, -1f, 0f), 2f, 1f, 1);
 
-		limb.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
+		limbA.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
+
+		Limb limbB =
+			new Limb (new Vector3f (0f, 2f, 2f), new Vector3f (0f, 0f, 1f), 2f, 1f, 1);
+
+		limbB.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
+
+		Joint joint =
+			new Joint (limbA, limbB, new Vector3f (0f, 2f, 0f));
+
+		joint.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
 	}
 
 
@@ -219,5 +230,5 @@ public class DemoMain extends SimpleApplication implements ActionListener
 
 	// Options
 	private boolean m_dvorakMode = false;
-	private boolean m_debugMode = false;
+	private boolean m_debugMode = true;
 }

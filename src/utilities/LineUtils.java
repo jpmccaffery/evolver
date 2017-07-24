@@ -6,7 +6,7 @@ import com.jme3.math.Vector3f;
 public class LineUtils
 {
 	/// \brief Simple line case
-	public class Line
+	public static class Line
 	{
 		public Line (Vector3f offset_, Vector3f direction_)
 		{

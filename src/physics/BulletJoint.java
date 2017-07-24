@@ -1,5 +1,8 @@
 package physics;
 
+import com.jme3.math.Vector3f;
+
+
 public class BulletJoint implements AbstractJoint, BulletObject
 {
 	public BulletJoint (AbstractJoint joint_)
@@ -27,7 +30,7 @@ public class BulletJoint implements AbstractJoint, BulletObject
 		return new Limb ();
 	}
 
-	public void unregister ()
+	public void unregisterFromSpace ()
 	{
 	}
 
@@ -36,8 +39,7 @@ public class BulletJoint implements AbstractJoint, BulletObject
 		return new Vector3f (0, 0, 0);
 	}
 
-	public DummyNode registerWithBullet (DummyBulletSpace space_)
+	public void registerWithBullet (DummyBulletSpace space_)
 	{
-		return new DummyNode ();
 	}
 }
