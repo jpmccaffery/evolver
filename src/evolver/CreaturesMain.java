@@ -106,6 +106,9 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 		singleLineNetworkInput = new double[7];
 		singleLineNetworkInput[6] = 1.0f;
 
+		if (m_debugMode)
+			m_bulletAppState.setDebugEnabled (true);
+
 		System.out.println("generation: " + m_genCounter);
 		System.out.println("evaluating network: " + m_runningNetworkId);
 	}
@@ -422,7 +425,6 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 			new RigidBodyControl (shape, 1);
 
 		rigidBodyControl.setFriction(0.05f);
-
 /*
 		if (kinematic_) {
 			rigidBodyControl.setKinematic(true);
@@ -455,7 +457,7 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 			rotate_ ? new Vector3f (0, 1, 0) : new Vector3f (1, 0, 0);
 
 		newRotation.fromAngleAxis (FastMath.PI / 2, rotAxis);
-		limbGeometry.setLocalRotation(newRotation);
+//		limbGeometry.setLocalRotation(newRotation);
 		node.attachChild(limbGeometry);
 
 		return node;
@@ -584,9 +586,10 @@ public class CreaturesMain extends SimpleApplication implements ActionListener
 	private static final int NUM_GENS = 100;
 	private static final int NUM_EVAL_STEPS = 1000;
 	private static final int NET_ID_TO_EVAL = 1;
-	private static final float SIM_SPEED = 10;
+	private static final float SIM_SPEED = 1;
 
 	// Options
 	private boolean m_evolveMode = true;
 	private boolean m_dvorakMode = false;
+	private boolean m_debugMode = false;
 }
