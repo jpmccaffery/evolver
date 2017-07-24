@@ -1,10 +1,27 @@
 package physics;
 
+import com.jme3.bullet.PhysicsSpace;
+
+import com.jme3.math.Vector3f;
+
+import com.jme3.scene.Node;
+
+
 public class Joint implements AbstractJoint, CompositeObject
 {
 	public Joint ()
 	{
 		m_joint = new AetherJoint ();
+	}
+
+	public Joint (Limb leftJoin_, Limb rightJoin_)
+	{
+		m_joint = new AetherJoint (leftJoin_, rightJoin_);
+	}
+
+	public Joint (Limb leftJoin_, Limb rightJoin_, Vector3f pivot_)
+	{
+		m_joint = new AetherJoint (leftJoin_, rightJoin_, pivot_);
 	}
 
 	public Joint (AbstractJoint joint_)
@@ -32,9 +49,9 @@ public class Joint implements AbstractJoint, CompositeObject
 		return m_joint.rightJoin ();
 	}
 
-	public void unregister ()
+	public void unregisterFromSpace ()
 	{
-		m_joint.unregister ();
+		m_joint.unregisterFromSpace ();
 	}
 
 	public Vector3f position ()
@@ -44,16 +61,20 @@ public class Joint implements AbstractJoint, CompositeObject
 
 	public void registerWithBullet (DummyBulletSpace space_)
 	{
-		m_joint.unregister ();
-		m_joint = new BulletJoint (m_joint);
-		m_joint.registerWithBullet (space_);
+		m_joint.unregisterFromSpace ();
+		BulletJoint bJoint = new BulletJoint (m_joint);
+		bJoint.registerWithBullet (space_);
+
+		m_joint = bJoint;
 	}
 
 	public void registerWithJMonkey (PhysicsSpace space_, Node rootNode_)
 	{
-		m_joint.unregister ();
-		m_joint = new MonkeyJoint (m_joint);
-		m_joint.registerWithJMonkey (space_, node_);
+		m_joint.unregisterFromSpace ();
+		MonkeyJoint mJoint = new MonkeyJoint (m_joint);
+		mJoint.registerWithJMonkey (space_, rootNode_);
+
+		m_joint = mJoint;
 	}
 
 	private AbstractJoint m_joint;

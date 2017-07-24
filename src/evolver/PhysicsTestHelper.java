@@ -95,7 +95,46 @@ public class PhysicsTestHelper {
         space.add(sphereGeometry);
 
     }
-    
+
+    public static void createPhysicsOnlyWorld (Node rootNode, PhysicsSpace space)
+    {
+        Box floorBox = new Box(140, 0.25f, 140);
+        Geometry floorGeometry = new Geometry("Floor", floorBox);
+
+        floorGeometry.setLocalTranslation(0, -5, 0);
+        floorGeometry.addControl(new RigidBodyControl(0));
+
+        rootNode.attachChild(floorGeometry);
+
+        space.add(floorGeometry);
+
+        //movable boxes
+        for (int i = 0; i < 12; i++)
+        {
+            Box box = new Box(0.25f, 0.25f, 0.25f);
+            Geometry boxGeometry = new Geometry("Box", box);
+
+            boxGeometry.setLocalTranslation(i, 5, -3);
+            boxGeometry.addControl(new RigidBodyControl(2));
+
+            rootNode.attachChild(boxGeometry);
+
+            space.add(boxGeometry);
+        }
+
+        //immovable sphere with mesh collision shape
+        Sphere sphere = new Sphere(8, 8, 1);
+        Geometry sphereGeometry = new Geometry("Sphere", sphere);
+
+        sphereGeometry.setLocalTranslation(4, -4, 2);
+        sphereGeometry.addControl(new RigidBodyControl(new MeshCollisionShape(sphere), 0));
+
+        rootNode.attachChild(sphereGeometry);
+
+        space.add(sphereGeometry);
+
+    }
+
     public static void createPhysicsTestWorldSoccer(Node rootNode, AssetManager assetManager, PhysicsSpace space) {
         AmbientLight light = new AmbientLight();
         light.setColor(ColorRGBA.LightGray);
