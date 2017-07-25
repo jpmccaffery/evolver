@@ -1,6 +1,6 @@
 package physics;
 
 
-interface CompositeObject extends AetherObject, BulletObject, MonkeyObject
+public interface CompositeObject extends AetherObject, BulletObject, MonkeyObject
 {
 }
