@@ -1,5 +1,8 @@
 package evolver;
 
+import critter.SimpleBody;
+import critter.Body;
+
 import physics.AetherLimb;
 import physics.MonkeyLimb;
 import physics.Limb;
@@ -103,20 +106,8 @@ public class DemoMain extends SimpleApplication implements ActionListener
 		if (m_debugMode)
 			m_bulletAppState.setDebugEnabled (true);
 
-		Limb limbA =
-			new Limb (new Vector3f (0f, 0f, 0f), new Vector3f (0f, -1f, 0f), 2f, 1f, 1);
-
-		limbA.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
-
-		Limb limbB =
-			new Limb (new Vector3f (0f, 2f, 2f), new Vector3f (0f, 0f, 1f), 2f, 1f, 1);
-
-		limbB.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
-
-		Joint joint =
-			new Joint (limbA, limbB, new Vector3f (0f, 2f, 0f));
-
-		joint.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
+		m_body = new SimpleBody ();
+		m_body.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
 	}
 
 
@@ -223,7 +214,7 @@ public class DemoMain extends SimpleApplication implements ActionListener
 	}
 
 	private BulletAppState m_bulletAppState = new BulletAppState();
-	private MonkeyLimb m_limb;
+	private Body m_body;
 
 	// Constants
 	private static final float SIM_SPEED = 1;
