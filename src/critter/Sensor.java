@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface Sensor
 {
-	public List<Double> read (float tpf_);
+	public List<Float> read (float tpf_);
 	public int size ();
 }

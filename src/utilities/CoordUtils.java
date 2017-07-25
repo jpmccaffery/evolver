@@ -41,6 +41,6 @@ public class CoordUtils
 
 	public static Vector3f zAxisFromRotation (Quaternion rotation_)
 	{
-		return rotation_.mult (new Vector3f (0f, 0f, 0f));
+		return rotation_.mult (new Vector3f (0f, 0f, 1f));
 	}
 }
