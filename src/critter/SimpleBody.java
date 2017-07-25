@@ -16,7 +16,7 @@ public class SimpleBody extends Body
 		m_limbs = new ArrayList<Limb> ();
 		m_joints = new ArrayList<Joint> ();
 
-		float length = 1.5f;
+		float length = 0.75f;
 		float mass = 1f;
 		Limb arm;
 		Joint elbow;
@@ -25,20 +25,20 @@ public class SimpleBody extends Body
                             length, mass, 2);
 		m_limbs.add (m_torso);
 
-		float offset = length / 2f + length / 5f;
+		float offset = length / 2f + length / 2f;
 
 		arm = new Limb (new Vector3f (0f, -offset, -offset), new Vector3f (0f, -1f, 0f),
                         length, mass, 1);
 		m_limbs.add (arm);
 
-		elbow = new Joint (arm, m_torso, new Vector3f (0f, 0f, -offset));
+		elbow = new Joint (arm, m_torso);
 		m_joints.add (elbow);
 
 		arm = new Limb (new Vector3f (0f, -offset, offset), new Vector3f (0f, -1f, 0f),
                         length, mass, 1);
 		m_limbs.add (arm);
 
-		elbow = new Joint (arm, m_torso, new Vector3f (0f, 0f, offset));
+		elbow = new Joint (arm, m_torso);
 		m_joints.add (elbow);
 	}
 
