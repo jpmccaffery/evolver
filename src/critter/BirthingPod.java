@@ -1,20 +1,14 @@
 package critter;
 
-public class BirthingPod
+import java.util.List;
+
+public abstract class BirthingPod
 {
 	public Critter birth ()
 	{
-		_birth ();
+		Brain newBrain = brainVat ().grow (inputSize (), outputSize ());
 
-		Brain newBrain = m_brainVat.grow (inputSize (), outputSize ());
-
-		return new Critter (newBrain, sensors (), actuators (),
-				    body ());
-	}
-
-	protected BirthingPod (BrainVat brainVat_)
-	{
-		m_brainVat = brainVat_;
+		return new Critter (newBrain, body (), sensors (), actuators ());
 	}
 
 	private int inputSize ()
@@ -31,15 +25,15 @@ public class BirthingPod
 	{
 		int total = 0;
 
-		for (Actuator s : actuators ())
-			total += s.size ();
+		for (Actuator a : actuators ())
+			total += a.size ();
 
 		return total;
 	}
 
-	protected virtual void _birth ();
 
-	protected virtual List<Sensor> sensors ();
-	protected virtual List<Actuator> actuators ();
-	protected virtual Body body ();
+	public abstract BrainVat brainVat ();
+	public abstract List<Sensor> sensors ();
+	public abstract List<Actuator> actuators ();
+	public abstract Body body ();
 }

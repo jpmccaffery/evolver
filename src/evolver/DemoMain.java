@@ -2,6 +2,12 @@ package evolver;
 
 import critter.SimpleBody;
 import critter.Body;
+import critter.Critter;
+import critter.RandomBrainVat;
+import critter.BrainVat;
+import critter.PushPullBrain;
+import critter.BirthingPod;
+import critter.SimpleWalkerBirthingPod;
 
 import physics.AetherLimb;
 import physics.MonkeyLimb;
@@ -106,14 +112,19 @@ public class DemoMain extends SimpleApplication implements ActionListener
 		if (m_debugMode)
 			m_bulletAppState.setDebugEnabled (true);
 
-		m_body = new SimpleBody ();
-		m_body.registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
+		BrainVat vat = new RandomBrainVat ("networks/test.xml", 1, PushPullBrain.class);
+		BirthingPod pod = new SimpleWalkerBirthingPod (vat);
+
+		m_critter = pod.birth ();
+		m_critter.body ().registerWithJMonkey (m_bulletAppState.getPhysicsSpace (), rootNode);
 	}
 
 
 	@Override
 	public void simpleUpdate(float tpf_)
 	{
+		m_critter.think (tpf_);
+		m_critter.act (tpf_);
 	}
 
 	/// \brief Set up the lighting
@@ -214,7 +225,7 @@ public class DemoMain extends SimpleApplication implements ActionListener
 	}
 
 	private BulletAppState m_bulletAppState = new BulletAppState();
-	private Body m_body;
+	private Critter m_critter;
 
 	// Constants
 	private static final float SIM_SPEED = 1;

@@ -1,5 +1,8 @@
 package critter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Critter
 {
 	public Critter (Brain brain_, Body body_, List<Sensor> sensors_,
@@ -13,30 +16,30 @@ public class Critter
 
 	public void think (float tpf_)
 	{
-		List<Double> inputActivity = new ArrayList<Double> ();
+		List<Float> inputActivity = new ArrayList<Float> ();
 
 		for (Sensor s : m_sensors)
 		{
-			for (double i : s.read (tpf_))
+			for (float i : s.read (tpf_))
 			{
 				inputActivity.add (i);
 			}
 		}
 
-		m_brain.activate (inputActivity);
+		m_brain.activate (inputActivity, tpf_);
 	}
 
 	public void act (float tpf_)
 	{
-		List<Double> outputActivity = m_brain.readOutput ();
-		List<Double> localOutput = new ArrayList<Double> ();
+		List<Float> outputActivity = m_brain.readOutput (tpf_);
+		List<Float> localOutput = new ArrayList<Float> ();
 		int outputIndex = 0;
 
 		for (Actuator actuator : m_actuators)
 		{
 			while (localOutput.size () < actuator.size ())
 			{
-				localOutput.add (outputActivity[outputIndex]);
+				localOutput.add (outputActivity.get (outputIndex));
 				outputIndex++;
 			}
 

@@ -1,20 +1,20 @@
 /*
- * Copyright (C) 2007 Derek James 
- * 
+ * Copyright (C) 2007 Derek James
+ *
  * This file is part of SIPHON (Simulating the Phylogeny and Ontogeny of the Neocortex).
- * 
+ *
  * SIPHON is free software; you can redistribute it and/or modify it under the terms of the GNU
  * General Public License as published by the Free Software Foundation; either version 2 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with this program; if
  * not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
  * 02111-1307 USA
- * 
+ *
  * created by Derek James on November 4th, 2007
  */
 package network;
@@ -27,9 +27,9 @@ package network;
  * connection's presynaptic neuron is inhibitory, then it has a negative
  * weight value.
  * A connection may also be a delay connection, so that it holds the
- * transmission of its signal for a given amount of time (usually 1 
+ * transmission of its signal for a given amount of time (usually 1
  * time step).
- * 
+ *
  * @author Derek James
  */
 
@@ -54,33 +54,32 @@ public boolean getLTPJustInduced() {
 	return LTPJustInduced;
 }
 
-public void setLTPJustInduced( boolean newLTPJustInducedSetting ) {
+public void setLTPJustInduced(boolean newLTPJustInducedSetting) {
 	LTPJustInduced = newLTPJustInducedSetting;
 }
 
-public void setWeight ( double newWeight ) {
+public void setWeight (double newWeight) {
 	//If the weight has already been saturated to its max, then no weight update
 	//occurs, resulting in non-reversible learning upon saturation
-	if ( !saturated ) {	
+	if (!saturated) {
 		//Bounds the weights by the max magnitude allowed
-		if ( newWeight < -maxWeightMagnitude ) {
+		if (newWeight < -maxWeightMagnitude) {
 			newWeight = -maxWeightMagnitude;
 			saturated = true;
-		} else if ( newWeight > maxWeightMagnitude ) {
+		} else if (newWeight > maxWeightMagnitude) {
 			newWeight = maxWeightMagnitude;
 			saturated = true;
 		}
-	        weight = newWeight;		
+			weight = newWeight;
 	}
-	
 }
 
 public double getLastDeltaW () {
-    return lastDeltaW;
+	return lastDeltaW;
 }
 
-public void setLastDeltaW ( double newLastDeltaW ) {
-    lastDeltaW = newLastDeltaW;
+public void setLastDeltaW (double newLastDeltaW) {
+	lastDeltaW = newLastDeltaW;
 }
 
 
@@ -88,7 +87,7 @@ public boolean getSaturated () {
 	return saturated;
 }
 
-public void setSaturated ( boolean newSaturatedSetting ) {
+public void setSaturated (boolean newSaturatedSetting) {
 	saturated = newSaturatedSetting;
 }
 
@@ -96,7 +95,7 @@ public double getWeight () {
 	return weight;
 }
 
-public void setId ( long newId ) {
+public void setId (long newId) {
 	id = newId;
 }
 
@@ -104,11 +103,11 @@ public long getId () {
 	return id;
 }
 
-public void setPresynapticId ( long newPresynapticId ) {
+public void setPresynapticId (long newPresynapticId) {
 	presynapticId = newPresynapticId;
 }
 
-public void setPostsynapticId ( long newPostsynapticId ) {
+public void setPostsynapticId (long newPostsynapticId) {
 	postsynapticId = newPostsynapticId;
 }
 
@@ -124,7 +123,7 @@ public float[] getSrcAndDestLocation() {
 	return srcAndDestLocs;
 }
 
-public void setSrcAndDestLocation( float newSrcX, float newSrcY, float newSrcZ,
+public void setSrcAndDestLocation(float newSrcX, float newSrcY, float newSrcZ,
 		float newDestX, float newDestY, float newDestZ) {
 	srcAndDestLocs[0] = newSrcX;
 	srcAndDestLocs[1] = newSrcY;
