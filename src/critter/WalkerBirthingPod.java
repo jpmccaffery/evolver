@@ -18,6 +18,8 @@ public class WalkerBirthingPod extends BirthingPod
 		for (Joint j : m_body.joints ())
 			m_sensors.add (new JointSensor (j));
 
+		m_sensors.add (new ManicSensor (1));
+
 		m_actuators = new ArrayList<Actuator> ();
 
 		for (Joint j : m_body.joints ())
