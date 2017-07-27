@@ -1,5 +1,11 @@
 package critter;
 
+import critter.actuator.Actuator;
+import critter.body.Body;
+import critter.brain.Brain;
+import critter.brain.BrainVat;
+import critter.sensor.Sensor;
+
 import java.util.List;
 
 public abstract class BirthingPod

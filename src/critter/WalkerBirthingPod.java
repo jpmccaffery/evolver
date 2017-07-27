@@ -1,5 +1,13 @@
 package critter;
 
+import critter.actuator.Actuator;
+import critter.actuator.JointActuator;
+import critter.body.Body;
+import critter.brain.BrainVat;
+import critter.sensor.JointSensor;
+import critter.sensor.ManicSensor;
+import critter.sensor.Sensor;
+
 import physics.Joint;
 
 import java.util.List;

@@ -1,5 +1,14 @@
 package physics;
 
+import physics.aether.AetherLimb;
+import physics.aether.AetherObject;
+
+import physics.bullet.BulletLimb;
+import physics.bullet.DummyBulletSpace;
+import physics.bullet.DummyNode;
+
+import physics.jmonkey.MonkeyLimb;
+
 import com.jme3.bullet.PhysicsSpace;
 
 import com.jme3.math.Quaternion;

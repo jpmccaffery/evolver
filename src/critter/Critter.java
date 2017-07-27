@@ -1,5 +1,10 @@
 package critter;
 
+import critter.actuator.Actuator;
+import critter.body.Body;
+import critter.brain.Brain;
+import critter.sensor.Sensor;
+
 import java.util.ArrayList;
 import java.util.List;
 

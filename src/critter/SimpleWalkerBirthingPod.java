@@ -1,6 +1,7 @@
 package critter;
 
-import physics.Joint;
+import critter.body.SimpleBody;
+import critter.brain.BrainVat;
 
 import java.util.List;
 import java.util.ArrayList;

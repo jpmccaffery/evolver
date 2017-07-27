@@ -1,5 +1,13 @@
 package physics;
 
+import physics.aether.AetherObject;
+import physics.aether.AetherJoint;
+
+import physics.bullet.BulletJoint;
+import physics.bullet.DummyBulletSpace;
+
+import physics.jmonkey.MonkeyJoint;
+
 import com.jme3.bullet.PhysicsSpace;
 
 import com.jme3.math.Vector3f;
