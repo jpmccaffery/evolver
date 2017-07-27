@@ -7,16 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PushPullBrain implements Brain
+public class NeuralStraightBrain implements Brain
 {
-	public PushPullBrain (Network network_)
+	public NeuralStraightBrain (Network network_)
 	{
-		if (network_.getOutputNeurons ().size () % 2 != 0)
-		{
-			System.err.println ("PushPullBrain::PushPullBrain: Odd number outputs.");
-			System.exit (0);
-		}
-
 		m_network = network_;
 	}
 
@@ -25,10 +19,9 @@ public class PushPullBrain implements Brain
 		List<Float> output = new ArrayList<Float> ();
 		List<Neuron> oNeurons = m_network.getOutputNeurons ();
 
-		for (int i = 0; i < oNeurons.size (); i += 2)
+		for (Neuron n : oNeurons)
 		{
-			output.add ((float) (oNeurons.get (i).getMembranePotential () -
-			                     oNeurons.get (i + 1).getMembranePotential ()));
+			output.add ((float) n.getMembranePotential ());
 		}
 
 		return output;
@@ -57,7 +50,7 @@ public class PushPullBrain implements Brain
 
 	public static int nnOutputs (int outputs_)
 	{
-		return 2 * outputs_;
+		return outputs_;
 	}
 
 	private final Network m_network;

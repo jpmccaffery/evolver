@@ -6,18 +6,18 @@ import network.NetworkBuilder;
 import java.io.File;
 
 
-public class XMLBrainVat extends BrainVat
+public class NeuralXMLBrainVat extends NeuralBrainVat
 {
-	public XMLBrainVat (String fileName_, Class type_)
+	public NeuralXMLBrainVat (String fileName_, Class type_)
 	{
 		super (type_);
 
 		m_fileName = fileName_;
 	}
 
-	public XMLBrainVat (String fileName_)
+	public NeuralXMLBrainVat (String fileName_)
 	{
-		this (fileName_, StraightBrain.class);
+		this (fileName_, NeuralStraightBrain.class);
 	}
 
 	public Network getNetwork (int numInputs_, int numOutputs_)

@@ -1,16 +1,16 @@
 package evolver;
 
-import critter.SimpleBody;
-import critter.Body;
+import critter.body.SimpleBody;
+import critter.body.Body;
 import critter.Critter;
-import critter.RandomBrainVat;
-import critter.BrainVat;
-import critter.PushPullBrain;
+import critter.brain.NeuralRandomBrainVat;
+import critter.brain.BrainVat;
+import critter.brain.NeuralPushPullBrain;
 import critter.BirthingPod;
 import critter.SimpleWalkerBirthingPod;
 
-import physics.AetherLimb;
-import physics.MonkeyLimb;
+import physics.aether.AetherLimb;
+import physics.jmonkey.MonkeyLimb;
 import physics.Limb;
 import physics.Joint;
 
@@ -112,7 +112,8 @@ public class DemoMain extends SimpleApplication implements ActionListener
 		if (m_debugMode)
 			m_bulletAppState.setDebugEnabled (true);
 
-		BrainVat vat = new RandomBrainVat ("networks/test.xml", 1, PushPullBrain.class);
+		BrainVat vat = new NeuralRandomBrainVat ("networks/test.xml", 1,
+		                                         NeuralPushPullBrain.class);
 		BirthingPod pod = new SimpleWalkerBirthingPod (vat);
 
 		m_critter = pod.birth ();

@@ -10,9 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class RandomBrainVat extends BrainVat
+public class NeuralRandomBrainVat extends NeuralBrainVat
 {
-	public RandomBrainVat (String saveName_, int index_, Class type_)
+	public NeuralRandomBrainVat (String saveName_, int index_, Class type_)
 	{
 		super (type_);
 
@@ -20,9 +20,9 @@ public class RandomBrainVat extends BrainVat
 		m_index = index_;
 	}
 
-	public RandomBrainVat (String saveName_, int index_)
+	public NeuralRandomBrainVat (String saveName_, int index_)
 	{
-		this (saveName_, index_, StraightBrain.class);
+		this (saveName_, index_, NeuralStraightBrain.class);
 	}
 
 	public Network getNetwork (int numInputs_, int numOutputs_)
@@ -40,12 +40,12 @@ public class RandomBrainVat extends BrainVat
 		}
 		catch (IOException exception_)
 		{
-			System.err.println ("RandomBrainVat::getNetwork:");
+			System.err.println ("NeuralRandomBrainVat::getNetwork:");
 			System.err.println (exception_.getMessage ());
 			System.exit (0);
 		}
 
-		XMLBrainVat vat = new XMLBrainVat (m_saveName);
+		NeuralXMLBrainVat vat = new NeuralXMLBrainVat (m_saveName);
 
 		return vat.getNetwork (numInputs_, numOutputs_);
 	}
